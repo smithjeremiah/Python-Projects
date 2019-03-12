@@ -1,8 +1,7 @@
 import urllib.parse, urllib.error, urllib.request
 from bs4 import BeautifulSoup
 import sqlite3
-import time
-import datetime
+
 
 
 def stockcheck():
@@ -28,6 +27,7 @@ def stockcheck():
     stocklst.pop()# Removes unecessary 'if line'
 
 
+    #stores stock prices in a list of tuples
     tuple_lst = []
 
     while len(stocklst) > 0:
@@ -67,22 +67,3 @@ def stockcheck():
     conn.commit()
 
 stockcheck()
-print(datetime.date.today() + datetime.timedelta(days = 1))
-
-tday = datetime.date.today()
-tmrrow = datetime.date.today() + datetime.timedelta(days = 1)
-print('start')
-
-#makes it run everyday
-
-while True:
-
-    time.sleep(30000)
-    tday = datetime.date.today()
-    if tday == tmrrow:
-        stockcheck()
-        tmrrow = datetime.date.today() + datetime.timedelta(days = 1)
-        continue
-    print(tday)
-    print(tmrrow)
-    print('here')
